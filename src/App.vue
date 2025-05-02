@@ -1,11 +1,9 @@
 <template>
-  <span>Текущая дата: {{ dateNow }}</span>
+  <Button>Начать игру</Button>
 </template>
 
 <script setup>
-const dateNow = new Intl.DateTimeFormat('ru-RU', {
-  dateStyle: 'full',
-}).format(new Date())
+import Button from "@/components/Button.vue";
 </script>
 
 <style scoped></style>
