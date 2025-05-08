@@ -1,5 +1,5 @@
 <template>
-  <Header :score />
+  <Header :score="score" />
 	<Button>Начать игру</Button>
 	<Field />
 </template>

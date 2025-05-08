@@ -2,7 +2,7 @@
 	<header class="header">
 		<h1 class="header-title">Запомни слово</h1>
 		<Score
-			:score
+			:score="score"
 		/>
 	</header>
 </template>
