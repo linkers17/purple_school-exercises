@@ -21,7 +21,7 @@ const handleRotate = () => {
 	card.value[0].state = 'opened'
 }
 
-const handleStatusChange = (status) => {
+function handleStatusChange(status) {
 	card.value[0].status = status
 }
 </script>
