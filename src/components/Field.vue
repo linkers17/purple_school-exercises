@@ -1,5 +1,6 @@
 <template>
 	<Card
+		v-bind="card"
 		@rotate="handleRotate"
 		@statusChange="handleStatusChange"
 	/>
@@ -7,12 +8,20 @@
 
 <script setup>
 import Card from "@/components/Card.vue";
+import { ref } from "vue";
+
+const card = ref({
+	state: 'closed',
+	status: 'pending',
+	translation: 'без присмотра',
+	word: 'unadmitted',
+})
 
 const handleRotate = () => {
-	console.log('handleRotate')
+	card.value.state = 'opened'
 }
 
 const handleStatusChange = (status) => {
-	console.log('handleStatusChange', status)
+	card.value.status = status
 }
 </script>

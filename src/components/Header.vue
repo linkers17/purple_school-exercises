@@ -2,13 +2,16 @@
 	<header class="header">
 		<h1 class="header-title">Запомни слово</h1>
 		<Score
-			:score="100"
+			:score
 		/>
 	</header>
 </template>
 
 <script setup>
 import Score from "@/components/Score.vue";
+import { ref } from "vue";
+
+const score = ref(100)
 </script>
 
 <style scoped>

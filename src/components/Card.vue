@@ -2,7 +2,7 @@
 	<div class="card">
 		<div class="card-wrapper">
 			<div class="card-wrapper-number">01</div>
-			<div class="card-wrapper-word">unadmitted</div>
+			<div class="card-wrapper-word">{{ word }}</div>
 			<button class="card-wrapper-rotate" @click="emit('rotate')">Перевернуть</button>
 		</div>
 	</div>
@@ -14,6 +14,13 @@ const emit = defineEmits({
 	statusChange(status) {
 		return status
 	},
+})
+
+const { state, status, translation, word } = defineProps({
+	state: String,
+	status: String,
+	translation: String,
+	word: String,
 })
 </script>
 
