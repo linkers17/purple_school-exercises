@@ -2,13 +2,17 @@
 	<header class="header">
 		<h1 class="header-title">Запомни слово</h1>
 		<Score
-			:score="100"
+			:score="score"
 		/>
 	</header>
 </template>
 
 <script setup>
 import Score from "@/components/Score.vue";
+
+const { score } = defineProps({
+	score: Number,
+})
 </script>
 
 <style scoped>
