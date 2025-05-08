@@ -9,9 +9,10 @@
 
 <script setup>
 import Score from "@/components/Score.vue";
-import { ref } from "vue";
 
-const score = ref(100)
+const { score } = defineProps({
+	score: Number,
+})
 </script>
 
 <style scoped>
