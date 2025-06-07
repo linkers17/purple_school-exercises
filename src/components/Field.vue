@@ -12,38 +12,30 @@
 
 <script setup>
 import Card from "@/components/Card.vue";
-import { ref } from "vue";
+import {onMounted, ref} from "vue";
 
-const cards = ref([
-	{
-		id: 1,
-		state: 'closed',
-		status: 'pending',
-		translation: 'без присмотра',
-		word: 'unadmitted',
-	},
-	{
-		id: 2,
-		state: 'opened',
-		status: 'pending',
-		translation: 'караван верблюдов',
-		word: 'camel caravan',
-	},
-	{
-		id: 3,
-		state: 'opened',
-		status: 'success',
-		translation: 'автомобиль',
-		word: 'car',
-	},
-	{
-		id: 4,
-		state: 'opened',
-		status: 'failed',
-		translation: 'свинец',
-		word: 'lead',
-	},
-])
+const cards = ref([])
+
+onMounted(() => {
+	getWords()
+})
+
+async function getWords() {
+	const res = await fetch('http://localhost:8080/api/random-words', {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	})
+	if (res.status === 200) {
+		cards.value = await res.json()
+		cards.value = cards.value.map((card, index) => ({
+			...card,
+			id: index + 1,
+			state: 'closed',
+			status: 'pending',
+		}))
+	}
+}
 
 function handleRotate(id, state) {
 	const findIndex = cards.value.findIndex(card => card.id === id)
