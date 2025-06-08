@@ -10,10 +10,10 @@
 				<div class="card-wrapper-word">{{ translation }}</div>
 				<button v-if="isEnded" class="card-wrapper-rotate" @click="emit('rotate', id, 'closed')">Завершено</button>
 				<div v-else class="card-wrapper-actions">
-					<button class="card-wrapper-button-icon" @click="emit('statusChange', id, 'failed')">
+					<button class="card-wrapper-button-icon" @click="failed">
 						<FailedIcon />
 					</button>
-					<button class="card-wrapper-button-icon" @click="emit('statusChange', id, 'success')">
+					<button class="card-wrapper-button-icon" @click="success">
 						<SuccessIcon />
 					</button>
 				</div>
@@ -25,9 +25,10 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
+import { computed, inject } from "vue";
 import FailedIcon from "@/components/icons/FailedIcon.vue";
 import SuccessIcon from "@/components/icons/SuccessIcon.vue";
+import {scoreProvide} from "@/constants.js";
 
 const emit = defineEmits({
 	rotate(id) {
@@ -54,6 +55,18 @@ const number = computed(() => {
 const isEnded = computed(() => {
 	return status === 'success' || status === 'failed'
 })
+
+const score = inject(scoreProvide)
+
+const failed = () => {
+	score.value -= 4
+	emit('statusChange', id, 'failed')
+}
+
+const success = () => {
+	score.value += 10
+	emit('statusChange', id, 'success')
+}
 </script>
 
 <style scoped>
