@@ -48,12 +48,17 @@ function handleStatusChange(id, status) {
 	const findIndex = cards.value.findIndex(card => card.id === id)
 	cards.value[findIndex].status = status
 }
+
+defineExpose({
+	getWords,
+})
 </script>
 
 <style scoped>
 .field {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	gap: 65px 105px;
 }
 </style>
